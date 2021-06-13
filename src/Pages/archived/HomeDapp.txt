@@ -1,0 +1,18 @@
+import React from "react"
+import Home from "./Home"
+import { counterAddress, counterAbi } from "../contracts/Counter"
+import { useContract } from "web3-hooks"
+
+const DappHome = () => {
+  const counter = useContract(counterAddress, counterAbi)
+
+  const CounterContext = React.createContext(null)
+
+  return (
+    <CounterContext.Provider value={counter}>
+      <Home />
+    </CounterContext.Provider>
+  )
+}
+
+export default DappHome
